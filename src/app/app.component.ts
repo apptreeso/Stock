@@ -24,3 +24,10 @@ export class AppComponent {
   constructor(private $http: HttpClient) {
   }
 
+  onAddStockSymbol() {
+    if (this.symbols.findIndex((sym) => this.symbol === sym) === -1) {
+      this.symbols.push(this.symbol);
+      this.onUpdateStocks();
+    }
+  }
+}
