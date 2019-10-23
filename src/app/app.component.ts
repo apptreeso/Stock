@@ -24,28 +24,3 @@ export class AppComponent {
   constructor(private $http: HttpClient) {
   }
 
-  onAddStockSymbol() {
-    if (this.symbols.findIndex((sym) => this.symbol === sym) === -1) {
-      this.symbols.push(this.symbol);
-      this.onUpdateStocks();
-    }
-  }
-
-  onUpdateStocks() {
-
-    let url = 'https://api.iextrading.com/1.0/tops/last?symbols=';
-    this.symbols.forEach(symbol => url = url + symbol + ',');
-    this.$http.get(url).subscribe(
-      data => {
-        console.log(data);
-        this.stocks = Object.assign([], data);
-      },
-      error => console.log(error)
-    );
-  }
-
-  onDeleteStock(stock) {
-    this.symbols = this.symbols.filter(sym => sym !== stock.symbol);
-    this.onUpdateStocks();
-  }
-}
