@@ -43,4 +43,9 @@ export class AppComponent {
       error => console.log(error)
     );
   }
+
+  onDeleteStock(stock) {
+    this.symbols = this.symbols.filter(sym => sym !== stock.symbol);
+    this.onUpdateStocks();
+  }
 }
