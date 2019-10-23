@@ -30,4 +30,17 @@ export class AppComponent {
       this.onUpdateStocks();
     }
   }
+
+  onUpdateStocks() {
+
+    let url = 'https://api.iextrading.com/1.0/tops/last?symbols=';
+    this.symbols.forEach(symbol => url = url + symbol + ',');
+    this.$http.get(url).subscribe(
+      data => {
+        console.log(data);
+        this.stocks = Object.assign([], data);
+      },
+      error => console.log(error)
+    );
+  }
 }
