@@ -1,0 +1,32 @@
+<div class="text-center my-5">
+  <h1>Stock Portfolio</h1>
+  <div class="col-md-12 mx-3 my-3">
+    <select id="symbol" class="col-md-4 browser-default custom-select" [(ngModel)]="symbol">
+      <option *ngFor="let i of assignments">{{i}}</option>
+    </select>
+    <button class="btn btn-primary col-md-3 mx-3" (click)="onAddStockSymbol()">Search</button>
+  </div>
+
+  <table class="table table-bordered table-striped col-md-12 my-3">
+    <thead class="black white-text">
+      <tr>
+        <th scope="col">Symbol</th>
+        <th scope="col">Price</th>
+        <th scope="col">Size</th>
+        <th scope="col">Time</th>
+        <th scope="col">Operation</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let stock of stocks">
+        <td>{{stock.symbol}}</td>
+        <td>{{stock.price}}</td>
+        <td>{{stock.size}}</td>
+        <td>{{stock.time | date:'MM/dd/yyyy hh:mm:ss'}}</td>
+        <td> <button (click)="onDeleteStock(stock)">delete</button> </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+<router-outlet></router-outlet>
